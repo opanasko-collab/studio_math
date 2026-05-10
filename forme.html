@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="uk"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Майстерня математичних гуру - Тарифи та Знайомство</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&amp;family=Lexend:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e2e2e8",
+                    "surface": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#0d3a7a",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dad9df",
+                    "on-secondary-container": "#6e5700",
+                    "primary-fixed": "#d8e2ff",
+                    "primary": "#002556",
+                    "on-primary-fixed-variant": "#1d4585",
+                    "surface-container-highest": "#e2e2e8",
+                    "on-tertiary-container": "#ea915f",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#672a00",
+                    "outline-variant": "#c3c6d2",
+                    "on-tertiary-fixed-variant": "#753409",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffdbca",
+                    "inverse-surface": "#2f3035",
+                    "on-secondary-fixed": "#241a00",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-background": "#1a1b20",
+                    "tertiary": "#451a00",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed-dim": "#f0c110",
+                    "on-primary-container": "#84a6ed",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#adc6ff",
+                    "secondary-container": "#fdcc22",
+                    "on-secondary-fixed-variant": "#584400",
+                    "inverse-on-surface": "#f1f0f6",
+                    "secondary": "#745b00",
+                    "outline": "#747781",
+                    "on-primary-fixed": "#001a41",
+                    "on-surface-variant": "#434750",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "surface-container-high": "#e8e7ee",
+                    "background": "#f9f9ff",
+                    "on-tertiary-fixed": "#331100",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffe08b",
+                    "surface-container": "#eeedf3",
+                    "on-surface": "#1a1b20",
+                    "surface-tint": "#395d9f",
+                    "surface-container-low": "#f4f3f9",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "container-max-width": "1280px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "h2": ["Epilogue"],
+                    "label-caps": ["Lexend"],
+                    "h1": ["Epilogue"],
+                    "body-md": ["Lexend"],
+                    "body-lg": ["Lexend"],
+                    "h3": ["Epilogue"]
+            },
+            "fontSize": {
+                    "h2": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h1": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h3": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .symbol-overlay {
+            position: absolute;
+            z-index: -1;
+            font-family: 'Epilogue';
+            opacity: 0.05;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-blue-50/50 dark:border-blue-900/30 shadow-[0_10px_30px_rgba(13,58,122,0.05)] docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center px-8 py-5 max-w-[1280px] mx-auto">
+<div class="text-2xl font-black text-[#0D3A7A] dark:text-white tracking-tighter">
+                Майстерня математичних гуру
+            </div>
+<div class="hidden md:flex gap-8 items-center font-['Epilogue'] font-medium text-base tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#4A90D9] transition-colors duration-300" href="#">Головна</a>
+<a class="text-[#0D3A7A] dark:text-white border-b-2 border-[#F5C518] pb-1" href="#">Курси</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#4A90D9] transition-colors duration-300" href="#">Про нас</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#4A90D9] transition-colors duration-300" href="#">Блог</a>
+</div>
+<button class="bg-[#F5C518] text-[#0D3A7A] font-bold px-6 py-2.5 rounded-full active:scale-95 transition-transform duration-200">
+                Увійти
+            </button>
+</nav>
+</header>
+<main class="relative">
+<!-- Floating Math Symbols (Decorative) -->
+<div class="symbol-overlay text-[150px] top-20 left-10">Σ</div>
+<div class="symbol-overlay text-[200px] top-[400px] right-20">π</div>
+<div class="symbol-overlay text-[180px] bottom-40 left-20">√</div>
+<div class="symbol-overlay text-[120px] top-[800px] left-1/3">∞</div>
+<!-- Hero Section: Personal Introduction -->
+<section class="max-w-[1280px] mx-auto px-8 py-16 md:py-24 grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1">
+<span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-secondary-container text-on-secondary-fixed-variant font-label-caps text-label-caps uppercase">Ваш наставник</span>
+<h1 class="font-h1 text-h1 text-primary-container mb-6">
+                    Мене звати Оксана, я репетитор з математики онлайн.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                    Я допомагаю учням не просто розв'язувати задачі, а розуміти логіку кожної дії. Математика — це не страшно, це захопливо! Разом ми подолаємо будь-які труднощі.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-[#F5C518] text-[#0D3A7A] font-bold px-8 py-4 rounded-full text-lg shadow-lg hover:shadow-xl transition-all active:scale-95">
+                        Записатися
+                    </button>
+<button class="border-2 border-[#0D3A7A] text-[#0D3A7A] font-bold px-8 py-4 rounded-full text-lg hover:bg-[#0D3A7A] hover:text-white transition-all active:scale-95">
+                        Записатися на пробний урок
+                    </button>
+</div>
+</div>
+<div class="order-1 md:order-2 relative">
+<div class="absolute -top-6 -right-6 w-32 h-32 bg-[#F5C518] rounded-full z-0 opacity-20"></div>
+<div class="relative z-10 rounded-xl overflow-hidden shadow-2xl border-8 border-white">
+<img alt="Оксана - Репетитор з математики" class="w-full h-[500px] object-cover" data-alt="A professional and friendly Ukrainian female mathematics tutor named Oksana smiling warmly in a bright modern home office. She is wearing a smart-casual blazer, sitting at a desk with an open laptop and a math textbook. The lighting is soft and natural, creating a welcoming academic atmosphere with a background featuring a neat bookshelf. The color palette emphasizes clean whites and deep blues, aligning with a professional educational brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE5RrO0ltPCNxYobN008-iOGC5TnkX_dEu7piyAWk7Q_KvYB1gdXgQS5Q9hAuh3M1-T0Nf8YUXbpIOb1Vs8V-AMK28uUa7Hsf_04A7JVCy7EikLkKPLsBzra4a1SufqqXnIpRdJ9rR_sJZCryoGpuk1PcfcBY5a0Zy8Yp0c14sMNZqP6oPBeIpidRBoGKbmPeY3MF62LcQASZg9_MjYWkiIroRMOnWQ06mU4BqvyWRMqXT3AdYl9xEUDsEM1rCpOgNwudalBb0HyU"/>
+</div>
+<div class="absolute -bottom-6 -left-6 glass-card p-6 rounded-lg shadow-lg z-20 border border-white/50">
+<p class="font-bold text-[#0D3A7A]">100+ учнів</p>
+<p class="text-sm text-slate-500">успішно склали іспити</p>
+</div>
+</div>
+</section>
+<!-- Pricing Card Section -->
+<section class="bg-surface-container-low py-24">
+<div class="max-w-[1280px] mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="font-h2 text-h2 text-primary mb-4">Вартість навчання</h2>
+<p class="text-body-lg text-on-surface-variant">Прозорі умови без прихованих платежів</p>
+</div>
+<div class="flex justify-center">
+<div class="glass-card max-w-md w-full p-10 rounded-lg shadow-[0_20px_50px_rgba(13,58,122,0.1)] border border-white relative overflow-hidden group">
+<!-- Accent Bar -->
+<div class="absolute top-0 left-0 w-full h-2 bg-[#F5C518]"></div>
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-on-secondary-fixed-variant bg-secondary-fixed px-3 py-1 rounded-full mb-6 inline-block">Індивідуальне заняття</span>
+<div class="mt-8 mb-8">
+<div class="text-5xl font-extrabold text-primary-container mb-2">500 <span class="text-2xl font-bold">грн</span></div>
+<div class="text-lg font-medium text-slate-500">Тривалість уроку: 45 хвилин</div>
+</div>
+<div class="space-y-4 mb-10 text-left">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#F5C518]">check_circle</span>
+<span>Вартість уроку: 500 гривень</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#F5C518]">check_circle</span>
+<span>Індивідуальний підхід</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#F5C518]">check_circle</span>
+<span>Всі навчальні матеріали включені</span>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-sm text-on-surface-variant italic mb-6">
+                                    Якщо тобі не потрібен пробний урок — записуйся!
+                                </p>
+<button class="w-full bg-[#F5C518] text-[#0D3A7A] font-bold py-4 rounded-full text-lg hover:shadow-lg transition-all active:scale-95 group-hover:scale-[1.02]">
+                                    Тисни "Записатися"
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interesting Facts Section -->
+<section class="max-w-[1280px] mx-auto px-8 py-24">
+<h2 class="font-h2 text-h2 text-center text-primary-container mb-16">Чи знаєте ви, що?</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Fact 1 -->
+<div class="p-8 rounded-lg border border-outline-variant hover:border-primary-container/30 transition-colors bg-white shadow-sm">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#0D3A7A]">lightbulb</span>
+</div>
+<h3 class="font-h3 text-h3 text-[#0D3A7A] mb-4">Бджолині стільники</h3>
+<p class="text-on-surface-variant">Бджоли будують стільники у формі шестикутників, тому що це найбільш математично ефективна форма для зберігання меду з мінімальними витратами воску.</p>
+</div>
+<!-- Fact 2 -->
+<div class="p-8 rounded-lg border border-outline-variant hover:border-primary-container/30 transition-colors bg-white shadow-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#745b00]">calculate</span>
+</div>
+<h3 class="font-h3 text-h3 text-[#0D3A7A] mb-4">Магія числа 9</h3>
+<p class="text-on-surface-variant">Якщо помножити будь-яке число на 9, то сума цифр отриманого результату завжди буде кратною 9. Спробуйте самі: 9 × 7 = 63 (6+3=9)!</p>
+</div>
+<!-- Fact 3 -->
+<div class="p-8 rounded-lg border border-outline-variant hover:border-primary-container/30 transition-colors bg-white shadow-sm">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#451a00]">functions</span>
+</div>
+<h3 class="font-h3 text-h3 text-[#0D3A7A] mb-4">Нескінченність</h3>
+<p class="text-on-surface-variant">У математиці існують різні "рівні" нескінченності. Наприклад, нескінченність дійсних чисел більша за нескінченність цілих чисел.</p>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="max-w-[1280px] mx-auto px-8 py-20">
+<div class="bg-primary-container rounded-xl p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 -mr-20 -mt-20 rounded-full"></div>
+<div class="relative z-10">
+<h2 class="font-h1 text-h1 text-white mb-8">Готові почати свою подорож у світ математики?</h2>
+<p class="text-primary-fixed text-body-lg mb-12 max-w-2xl mx-auto">
+                        Щоб записатися на урок, тисни "Записатися". Ми разом побудуємо зручний графік та план навчання.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-[#F5C518] text-[#0D3A7A] font-bold px-10 py-5 rounded-full text-xl hover:shadow-xl transition-all active:scale-95">
+                            Записатися
+                        </button>
+<button class="border-2 border-white text-white font-bold px-10 py-5 rounded-full text-xl hover:bg-white hover:text-primary-container transition-all active:scale-95">
+                            Пробний урок
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full border-t border-slate-200 dark:border-slate-800 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 px-8 py-12 max-w-[1280px] mx-auto font-['Epilogue'] text-sm leading-relaxed">
+<div class="font-bold text-[#0D3A7A] dark:text-white">
+                Майстерня математичних гуру
+            </div>
+<div class="flex flex-wrap justify-center gap-8 text-slate-500 dark:text-slate-400">
+<a class="hover:text-[#0D3A7A] dark:hover:text-white transition-all" href="#">Політика конфіденційності</a>
+<a class="hover:text-[#0D3A7A] dark:hover:text-white transition-all" href="#">Умови користування</a>
+<a class="hover:text-[#0D3A7A] dark:hover:text-white transition-all" href="#">Контакти</a>
+</div>
+<div class="text-[#0D3A7A] dark:text-blue-300">
+                © 2024 Майстерня математичних гуру. Математика з любов'ю.
+            </div>
+</div>
+</footer>
+</body></html>
