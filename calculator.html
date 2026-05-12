@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html class="light" lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Інтерактивні калькулятори | Studio of Math Gurus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-surface": "#1a1b20",
+          "error": "#ba1a1a",
+          "surface-tint": "#395d9f",
+          "tertiary-container": "#672a00",
+          "on-tertiary-container": "#ea915f",
+          "surface-container-high": "#e8e7ee",
+          "outline-variant": "#c3c6d2",
+          "secondary-fixed": "#ffe08b",
+          "on-tertiary-fixed": "#331100",
+          "tertiary-fixed": "#ffdbca",
+          "primary-container": "#0d3a7a",
+          "surface-dim": "#dad9df",
+          "inverse-primary": "#adc6ff",
+          "inverse-on-surface": "#f1f0f6",
+          "surface-container": "#eeedf3",
+          "inverse-surface": "#2f3035",
+          "primary": "#002556",
+          "on-tertiary": "#ffffff",
+          "on-primary-fixed": "#001a41",
+          "tertiary-fixed-dim": "#ffb690",
+          "surface-container-highest": "#e2e2e8",
+          "secondary": "#745b00",
+          "on-error": "#ffffff",
+          "on-primary-container": "#84a6ed",
+          "on-background": "#1a1b20",
+          "on-tertiary-fixed-variant": "#753409",
+          "background": "#f9f9ff",
+          "surface-bright": "#f9f9ff",
+          "on-error-container": "#93000a",
+          "surface-container-low": "#f4f3f9",
+          "outline": "#747781",
+          "on-surface-variant": "#434750",
+          "error-container": "#ffdad6",
+          "tertiary": "#451a00",
+          "primary-fixed-dim": "#adc6ff",
+          "on-secondary-fixed": "#241a00",
+          "on-primary-fixed-variant": "#1d4585",
+          "on-primary": "#ffffff",
+          "surface": "#f9f9ff",
+          "on-secondary-fixed-variant": "#584400",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary": "#ffffff",
+          "on-secondary-container": "#6e5700",
+          "surface-variant": "#e2e2e8",
+          "secondary-container": "#fdcc22",
+          "primary-fixed": "#d8e2ff",
+          "secondary-fixed-dim": "#f0c110"
+        },
+        borderRadius: {
+          DEFAULT: "1rem",
+          lg: "2rem",
+          xl: "3rem",
+          full: "9999px"
+        },
+        fontFamily: {
+          "body-lg": ["Lexend"],
+          "h3": ["Epilogue"],
+          "h2": ["Epilogue"],
+          "h1": ["Epilogue"],
+          "body-md": ["Lexend"]
+        },
+        fontSize: {
+          "body-lg": ["18px", {lineHeight:"1.6", fontWeight:"400"}],
+          "h3": ["28px", {lineHeight:"1.3", fontWeight:"600"}],
+          "label-caps": ["12px", {lineHeight:"1", letterSpacing:"0.05em", fontWeight:"600"}],
+          "h2": ["36px", {lineHeight:"1.2", fontWeight:"700"}],
+          "h1": ["48px", {lineHeight:"1.1", letterSpacing:"-0.02em", fontWeight:"700"}],
+          "body-md": ["16px", {lineHeight:"1.5", fontWeight:"400"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .hero-gradient {
+    background: radial-gradient(circle at top right, #d8e2ff 0%, #f9f9ff 100%);
+  }
+  .floating-symbol {
+    position: absolute;
+    z-index: -1;
+    color: #0d3a7a;
+    opacity: 0.05;
+    user-select: none;
+    pointer-events: none;
+  }
+  .op-btn { transition: all 0.2s; }
+  .op-btn.active {
+    border-color: #0d3a7a !important;
+    background: #d8e2ff !important;
+    transform: scale(0.95);
+  }
+  #resultCard { display: none; }
+  #resultCard.visible { display: block; }
+  .step-animate { animation: stepIn 0.3s ease forwards; opacity: 0; }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .error-shake { animation: shake 0.4s ease; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25%      { transform: translateX(-8px); }
+    75%      { transform: translateX(8px); }
+  }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+
+<!-- TopNavBar -->
+<header class="top-0 sticky z-50 bg-white/80 backdrop-blur-xl border-b border-blue-100/20 shadow-[0_10px_30px_rgba(13,58,122,0.05)]">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <div class="text-xl font-bold text-[#0D3A7A] tracking-tighter font-h3">Студія математичних гуру</div>
+    <nav class="hidden md:flex gap-8 items-center">
+      <a class="text-slate-600 hover:text-[#0D3A7A] transition-all font-body-md" href="/studio_math/index.html">Головна</a>
+      <a class="text-slate-600 hover:text-[#0D3A7A] transition-all font-body-md" href="#services">Послуги</a>
+      <a class="text-slate-600 hover:text-[#0D3A7A] transition-all font-body-md" href="/studio_math/catalog.html">Курси</a>
+      <a class="text-slate-600 hover:text-[#0D3A7A] transition-all font-body-md" href="/studio_math/trainings.html">Тренінги</a>
+      <a class="text-[#0D3A7A] font-bold border-b-2 border-[#0D3A7A] pb-1 font-body-md" href="#">Калькулятори</a>
+      <a class="text-slate-600 hover:text-[#0D3A7A] transition-all font-body-md" href="https://studiomathguru.blogspot.com/">Блог</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <button class="text-slate-500 hover:text-[#0D3A7A] transition-all">
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button class="bg-secondary-container text-primary font-bold px-6 py-2.5 rounded-full hover:scale-95 transition-all shadow-md">Зареєструватися</button>
+    </div>
+  </div>
+</header>
+
+<main class="relative">
+  <div class="floating-symbol text-[12rem] top-20 -left-10 rotate-12">Σ</div>
+  <div class="floating-symbol text-[16rem] top-80 right-20 -rotate-12">π</div>
+  <div class="floating-symbol text-[10rem] bottom-40 left-40 rotate-45">√</div>
+  <div class="floating-symbol text-[14rem] bottom-10 right-10 rotate-180">∞</div>
+
+  <!-- Hero -->
+  <section class="hero-gradient py-10 px-8 overflow-hidden">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-container/10 text-primary mb-4">
+        <span class="material-symbols-outlined text-sm">calculate</span>
+        <span class="font-label-caps text-label-caps">МАТЕМАТИЧНА ПРАКТИКА</span>
+      </div>
+      <h1 class="text-2xl font-bold font-h1 text-primary mb-3 max-w-4xl mx-auto">Інтерактивні калькулятори</h1>
+      <p class="text-body-md text-on-surface-variant max-w-2xl mx-auto mb-6">
+        Навчальні інструменти для легкої математики. Кожен інструмент пояснює логіку, а не просто видає відповідь.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <section class="max-w-7xl mx-auto px-8 pt-6 pb-20">
+    <div class="mb-12">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="h-8 w-1.5 bg-secondary-container rounded-full"></div>
+        <h2 class="font-h2 text-h2 text-primary">Калькулятор десяткових дробів</h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto glass-card rounded-xl shadow-[0_10px_30px_rgba(13,58,122,0.05)] overflow-hidden border border-blue-100/30 my-12">
+        <div class="bg-primary-container p-8 text-white flex justify-between items-center">
+          <div>
+            <h1 class="font-h3 text-h3">Математичний Помічник</h1>
+            <p class="opacity-80 mt-1 font-body-md">Вивчаємо десяткові дроби разом</p>
+          </div>
+          <span class="material-symbols-outlined text-5xl text-secondary-container">function</span>
+        </div>
+
+        <div class="p-8 md:p-12">
+          <!-- Inputs -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div class="space-y-3">
+              <label class="block font-label-caps text-label-caps text-outline uppercase tracking-wider">Число A</label>
+              <input id="numA" class="w-full text-2xl p-5 bg-surface-container-low border-2 border-transparent focus:border-secondary-container focus:bg-white rounded-lg transition-all outline-none font-body-lg text-primary" placeholder="Напр: 12.35" type="text" value="12.35"/>
+            </div>
+            <div class="space-y-3">
+              <label class="block font-label-caps text-label-caps text-outline uppercase tracking-wider">Число B</label>
+              <input id="numB" class="w-full text-2xl p-5 bg-surface-container-low border-2 border-transparent focus:border-secondary-container focus:bg-white rounded-lg transition-all outline-none font-body-lg text-primary" placeholder="Напр: 4.7" type="text" value="4.7"/>
+            </div>
+          </div>
+
+          <!-- Error message -->
+          <div id="errorMsg" class="hidden mb-6 p-4 bg-error-container text-on-error-container rounded-lg flex items-center gap-3">
+            <span class="material-symbols-outlined">error</span>
+            <span id="errorText"></span>
+          </div>
+
+          <!-- Operation Buttons -->
+          <div class="flex flex-wrap justify-center gap-6 mb-12">
+            <button class="op-btn group flex flex-col items-center p-5 bg-white border-2 border-outline-variant rounded-lg hover:border-primary-container hover:bg-primary-fixed transition-all w-28 shadow-sm" onclick="calculate('add')">
+              <span class="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">+</span>
+              <span class="font-label-caps text-[10px] text-outline group-hover:text-primary mt-2">ДОДАТИ</span>
+            </button>
+            <button class="op-btn group flex flex-col items-center p-5 bg-white border-2 border-outline-variant rounded-lg hover:border-error hover:bg-error-container transition-all w-28 shadow-sm" onclick="calculate('sub')">
+              <span class="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">−</span>
+              <span class="font-label-caps text-[10px] text-outline group-hover:text-error mt-2">ВІДНЯТИ</span>
+            </button>
+            <button class="op-btn group flex flex-col items-center p-5 bg-white border-2 border-outline-variant rounded-lg hover:border-secondary-container hover:bg-secondary-fixed transition-all w-28 shadow-sm" onclick="calculate('mul')">
+              <span class="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">×</span>
+              <span class="font-label-caps text-[10px] text-outline group-hover:text-secondary mt-2">МНОЖИТИ</span>
+            </button>
+            <button class="op-btn group flex flex-col items-center p-5 bg-white border-2 border-outline-variant rounded-lg hover:border-tertiary-container hover:bg-tertiary-fixed transition-all w-28 shadow-sm" onclick="calculate('div')">
+              <span class="text-3xl font-bold text-primary group-hover:scale-110 transition-transform">÷</span>
+              <span class="font-label-caps text-[10px] text-outline group-hover:text-tertiary-container mt-2">ДІЛИТИ</span>
+            </button>
+          </div>
+
+          <!-- Result Card -->
+          <div id="resultCard" class="animate-in fade-in duration-500">
+            <div class="bg-surface-container-lowest rounded-lg p-8 border border-blue-100/50 shadow-inner">
+              <h2 class="font-h3 text-body-md text-primary mb-6 flex items-center">
+                <span class="material-symbols-outlined mr-3 text-primary">analytics</span>
+                Результат обчислення
+              </h2>
+              <div class="text-5xl font-bold text-primary mb-8 text-center tracking-tight">
+                <span id="finalResult"></span>
+              </div>
+              <div class="border-t border-outline-variant pt-8">
+                <h3 class="font-label-caps text-label-caps text-outline uppercase tracking-widest mb-6">Покрокове пояснення</h3>
+                <div class="space-y-4 font-body-md text-on-surface-variant" id="explanationContent"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info hint (shown before first calculation) -->
+          <div id="infoHint" class="mt-10 p-6 bg-secondary-fixed/30 rounded-lg border border-secondary-fixed/50 flex items-start gap-4">
+            <span class="material-symbols-outlined text-secondary text-3xl">lightbulb</span>
+            <p class="text-body-md text-on-secondary-fixed-variant leading-relaxed">
+              Введіть два числа і оберіть дію. Калькулятор покаже вам логіку обчислення «у стовпчик», допомагаючи зрозуміти кожен крок перетворення.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming Soon -->
+    <div>
+      <div class="flex items-center gap-4 mb-12">
+        <div class="h-8 w-1.5 bg-primary-container rounded-full"></div>
+        <h2 class="font-h2 text-h2 text-primary">Додаткові інструменти</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="group glass-card p-8 rounded-xl border border-outline-variant/30 relative overflow-hidden flex flex-col h-full hover:border-secondary-container transition-all">
+          <div class="absolute top-4 right-4 bg-surface-container-highest text-outline text-[10px] font-bold px-3 py-1 rounded-full">СКОРО БУДЕ</div>
+          <div class="w-14 h-14 bg-primary-container/5 rounded-full flex items-center justify-center mb-6 text-primary">
+            <span class="material-symbols-outlined text-3xl">calculate</span>
+          </div>
+          <h3 class="font-h3 text-body-lg mb-4 text-primary">Калькулятор НСД та НСК</h3>
+          <p class="text-body-md text-on-surface-variant flex-grow">Автоматичне розкладання на прості множники та візуалізація пошуку спільного дільника та кратного.</p>
+          <div class="mt-8 pt-6 border-t border-outline-variant/20 flex justify-between items-center opacity-40">
+            <span class="font-label-caps text-label-caps">КЛАС 5-6</span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
+          </div>
+        </div>
+        <div class="group glass-card p-8 rounded-xl border border-outline-variant/30 relative overflow-hidden flex flex-col h-full hover:border-secondary-container transition-all">
+          <div class="absolute top-4 right-4 bg-surface-container-highest text-outline text-[10px] font-bold px-3 py-1 rounded-full">СКОРО БУДЕ</div>
+          <div class="w-14 h-14 bg-primary-container/5 rounded-full flex items-center justify-center mb-6 text-primary">
+            <span class="material-symbols-outlined text-3xl">exposure</span>
+          </div>
+          <h3 class="font-h3 text-body-lg mb-4 text-primary">Розв'язувач лінійних рівнянь</h3>
+          <p class="text-body-md text-on-surface-variant flex-grow">Покрокове перенесення доданків та знаходження невідомого x з детальними коментарями.</p>
+          <div class="mt-8 pt-6 border-t border-outline-variant/20 flex justify-between items-center opacity-40">
+            <span class="font-label-caps text-label-caps">АЛГЕБРА 7</span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
+          </div>
+        </div>
+        <div class="group glass-card p-8 rounded-xl border border-outline-variant/30 relative overflow-hidden flex flex-col h-full hover:border-secondary-container transition-all">
+          <div class="absolute top-4 right-4 bg-surface-container-highest text-outline text-[10px] font-bold px-3 py-1 rounded-full">СКОРО БУДЕ</div>
+          <div class="w-14 h-14 bg-primary-container/5 rounded-full flex items-center justify-center mb-6 text-primary">
+            <span class="material-symbols-outlined text-3xl">straighten</span>
+          </div>
+          <h3 class="font-h3 text-body-lg mb-4 text-primary">Конвертер одиниць вимірювання</h3>
+          <p class="text-body-md text-on-surface-variant flex-grow">Швидке перетворення метрів, кілограмів та літрів з інтерактивною таблицею множників.</p>
+          <div class="mt-8 pt-6 border-t border-outline-variant/20 flex justify-between items-center opacity-40">
+            <span class="font-label-caps text-label-caps">УНІВЕРСАЛЬНИЙ</span>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-7xl mx-auto px-8 py-20">
+    <div class="bg-primary-container rounded-xl p-12 text-white relative overflow-hidden shadow-2xl">
+      <div class="absolute top-0 right-0 p-12 opacity-10">
+        <span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">psychology</span>
+      </div>
+      <div class="relative z-10 max-w-2xl">
+        <h2 class="font-h2 text-h2 mb-4">Потрібен інший калькулятор?</h2>
+        <p class="text-body-lg mb-8 opacity-90">Ми постійно оновлюємо нашу базу інструментів. Напишіть нам, яку тему ви зараз вивчаєте.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input class="bg-white/10 border border-white/20 rounded-full px-6 py-4 flex-grow outline-none focus:bg-white/20 transition-all placeholder:text-white/60" placeholder="Ваша пошта" type="email"/>
+          <button class="bg-secondary-container text-primary font-bold px-10 py-4 rounded-full hover:scale-105 transition-transform">Запропонувати ідею</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-slate-50 border-t border-slate-200 py-12 px-8">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div>
+      <div class="text-lg font-black text-[#0D3A7A] mb-4">Studio of Math Gurus</div>
+      <p class="font-['Epilogue'] text-sm text-slate-500 max-w-sm">© 2024 Studio of Math Gurus. Ми робимо складну математику доступною для кожного.</p>
+    </div>
+    <div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+      <a class="font-['Epilogue'] text-sm text-slate-500 hover:text-[#0D3A7A] transition-colors" href="#">Політика конфіденційності</a>
+      <a class="font-['Epilogue'] text-sm text-slate-500 hover:text-[#0D3A7A] transition-colors" href="#">Контакти</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Helpers ───────────────────────────────────────────────────
+function decimalPlaces(n) {
+  const s = n.toString();
+  const dot = s.indexOf('.');
+  return dot === -1 ? 0 : s.length - dot - 1;
+}
+
+function roundResult(val, decimals) {
+  return parseFloat(val.toFixed(decimals));
+}
+
+function makeStep(num, text) {
+  const div = document.createElement('p');
+  div.className = 'flex items-center gap-3 step-animate';
+  div.style.animationDelay = `${num * 0.12}s`;
+  div.innerHTML = `<span class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-xs flex-shrink-0">${num}</span> ${text}`;
+  return div;
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg');
+  document.getElementById('errorText').textContent = msg;
+  el.classList.remove('hidden');
+  el.classList.add('error-shake');
+  setTimeout(() => el.classList.remove('error-shake'), 400);
+  document.getElementById('resultCard').classList.remove('visible');
+}
+
+function clearError() {
+  document.getElementById('errorMsg').classList.add('hidden');
+}
+
+// ─── Main calculator ────────────────────────────────────────────
+function calculate(op) {
+  clearError();
+
+  // Parse — allow comma as decimal separator
+  const rawA = document.getElementById('numA').value.trim().replace(',', '.');
+  const rawB = document.getElementById('numB').value.trim().replace(',', '.');
+  const a = parseFloat(rawA);
+  const b = parseFloat(rawB);
+
+  if (isNaN(a) || rawA === '') { showError('Число A введено некоректно. Використовуйте цифри та крапку.'); return; }
+  if (isNaN(b) || rawB === '') { showError('Число B введено некоректно. Використовуйте цифри та крапку.'); return; }
+  if (op === 'div' && b === 0)  { showError('Ділення на нуль неможливе!'); return; }
+
+  const dA = decimalPlaces(a);
+  const dB = decimalPlaces(b);
+  const steps = [];
+  let result, explanation;
+
+  // ── Addition ──
+  if (op === 'add') {
+    const maxD = Math.max(dA, dB);
+    result = roundResult(a + b, maxD);
+    const aStr = a.toFixed(maxD);
+    const bStr = b.toFixed(maxD);
+    steps.push(`Урівнюємо знаки після коми: <b>${aStr}</b> та <b>${bStr}</b>`);
+    const aInt = Math.round(a * Math.pow(10, maxD));
+    const bInt = Math.round(b * Math.pow(10, maxD));
+    steps.push(`Додаємо як цілі числа: ${aInt} + ${bInt} = ${aInt + bInt}`);
+    if (maxD > 0) steps.push(`Ставимо кому: відраховуємо ${maxD} знак${maxD === 1 ? '' : 'и'} справа → <b>${result}</b>`);
+  }
+
+  // ── Subtraction ──
+  else if (op === 'sub') {
+    const maxD = Math.max(dA, dB);
+    result = roundResult(a - b, maxD);
+    const aStr = a.toFixed(maxD);
+    const bStr = b.toFixed(maxD);
+    steps.push(`Урівнюємо знаки після коми: <b>${aStr}</b> та <b>${bStr}</b>`);
+    const aInt = Math.round(a * Math.pow(10, maxD));
+    const bInt = Math.round(b * Math.pow(10, maxD));
+    const diff = aInt - bInt;
+    steps.push(`Віднімаємо як цілі числа: ${aInt} − ${bInt} = ${diff}`);
+    if (maxD > 0) steps.push(`Ставимо кому: відраховуємо ${maxD} знак${maxD === 1 ? '' : 'и'} справа → <b>${result}</b>`);
+    if (result < 0) steps.push(`Результат від'ємний: <b>${result}</b>`);
+  }
+
+  // ── Multiplication ──
+  else if (op === 'mul') {
+    const totalD = dA + dB;
+    result = roundResult(a * b, totalD > 10 ? 10 : totalD);
+    const aInt = Math.round(a * Math.pow(10, dA));
+    const bInt = Math.round(b * Math.pow(10, dB));
+    steps.push(`Ігноруємо коми: множимо <b>${aInt}</b> × <b>${bInt}</b> = ${aInt * bInt}`);
+    if (dA > 0) steps.push(`Число A має ${dA} знак${dA === 1 ? '' : 'и'} після коми`);
+    if (dB > 0) steps.push(`Число B має ${dB} знак${dB === 1 ? '' : 'и'} після коми`);
+    if (totalD > 0) steps.push(`Разом знаків після коми: ${dA} + ${dB} = <b>${totalD}</b> → відраховуємо справа → <b>${result}</b>`);
+    else steps.push(`Обидва числа цілі → результат: <b>${result}</b>`);
+  }
+
+  // ── Division ──
+  else if (op === 'div') {
+    const maxD = Math.max(dA, dB);
+    const aInt = Math.round(a * Math.pow(10, maxD));
+    const bInt = Math.round(b * Math.pow(10, maxD));
+    result = roundResult(a / b, 6);
+    // trim trailing zeros
+    result = parseFloat(result.toPrecision(10));
+    steps.push(`Множимо обидва числа на 10<sup>${maxD}</sup>, щоб прибрати коми`);
+    steps.push(`Отримуємо: <b>${aInt}</b> ÷ <b>${bInt}</b>`);
+    const intDiv = Math.floor(aInt / bInt);
+    const rem = aInt % bInt;
+    if (rem === 0) {
+      steps.push(`Ділимо: ${aInt} ÷ ${bInt} = <b>${intDiv}</b> (рівно)`);
+    } else {
+      steps.push(`Ділимо: ${aInt} ÷ ${bInt} ≈ <b>${result}</b> (з остачею ${rem})`);
+    }
+    steps.push(`Результат: <b>${result}</b>`);
+  }
+
+  // ── Render ──
+  document.getElementById('finalResult').textContent = result;
+  const container = document.getElementById('explanationContent');
+  container.innerHTML = '';
+  steps.forEach((text, i) => container.appendChild(makeStep(i + 1, text)));
+
+  document.getElementById('resultCard').classList.add('visible');
+  document.getElementById('infoHint').style.display = 'none';
+
+  // Highlight active button
+  document.querySelectorAll('.op-btn').forEach(b => b.classList.remove('active'));
+  const opMap = { add: 0, sub: 1, mul: 2, div: 3 };
+  document.querySelectorAll('.op-btn')[opMap[op]].classList.add('active');
+
+  // Scroll to result
+  document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── Allow Enter key on inputs ──
+document.querySelectorAll('#numA, #numB').forEach(input => {
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') calculate('add');
+  });
+});
+</script>
+</body>
+</html>
