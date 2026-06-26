@@ -171,63 +171,77 @@
   </section>
 
   <!-- Main -->
-  <section class="max-w-7xl mx-auto px-8 pt-6 pb-20">
+  <section class="max-w-7xl mx-auto px-8 pt-6 pb-20" style="font-family: sans-serif;">
   
-    <div class="mb-12">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="h-8 w-1.5 bg-secondary-container rounded-full"></div>
-        <h2 class="font-h2 text-text-h2 text-text-primary">Тренажер рівнянь</h2>
+    <div class="mb-12" style="margin-bottom: 3rem;">
+      <div class="flex items-center gap-4 mb-8"
+        style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+        <div class="h-8 w-1.5 bg-secondary-container rounded-full"
+          style="height: 2rem; width: 6px; background-color: #f59e0b; border-radius: 9999px;"></div>
+        <h2 class="font-h2 text-text-h2 text-text-primary"
+          style="font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 0;">Тренажер рівнянь</h2>
       </div>
     </div>
   
     <div
-      class="max-w-4xl mx-auto glass-card rounded-xl shadow-[0_10px_30px_rgba(13,58,122,0.05)] overflow-hidden border border-blue-100/30 my-12">
+      class="max-w-4xl mx-auto glass-card rounded-xl shadow-[0_10px_30px_rgba(13,58,122,0.05)] overflow-hidden border border-blue-100/30 my-12"
+      style="max-width: 56rem; margin-left: auto; margin-right: auto; background: white; border-radius: 0.75rem; box-shadow: 0 10px 30px rgba(13,58,122,0.05); border: 1px solid rgba(219, 234, 254, 0.3); overflow: hidden;">
   
-      <div class="bg-primary-container p-8 text-white flex justify-between items-center">
+      <div class="bg-primary-container p-8 text-white flex justify-between items-center"
+        style="background-color: #0d3a7a; padding: 2rem; color: white; display: flex; justify-content: space-between; align-items: center;">
         <div>
-          <h1 class="font-heading text-3xl font-bold">Магічні Рівняння</h1>
-          <p class="opacity-80 mt-2 font-body-md text-base">Перенось числа через знак "=" та змінюй їхні знаки</p>
+          <h1 class="font-heading text-3xl font-bold" style="font-size: 1.875rem; font-weight: 700; margin: 0;">Магічні
+            Рівняння</h1>
+          <p class="opacity-80 mt-2 font-body-md text-base"
+            style="opacity: 0.8; margin-top: 0.5rem; font-size: 1rem; margin-bottom: 0;">Перенось числа через знак "=" та
+            змінюй їхні знаки</p>
         </div>
-        <span class="material-symbols-outlined text-5xl text-secondary-container">calculate</span>
+        <span style="font-size: 2.5rem;">🧮</span>
       </div>
   
-      <div class="p-8 md:p-12 text-center">
-        <p class="text-slate-500 font-body-md text-lg mb-8">
+      <div class="p-8 md:p-12 text-center" style="padding: 2rem; text-align: center;">
+        <p class="text-slate-500 font-body-md text-lg mb-8"
+          style="color: #64748b; font-size: 1.125rem; margin-bottom: 2rem;">
           Клацни на число біля ікса, щоб перенести його на інший бік з протилежним знаком!
         </p>
   
         <div
-          class="flex justify-center items-center gap-6 text-4xl md:text-5xl font-bold my-12 min-h-[100px] flex-wrap select-none">
-          <span class="text-slate-800">x</span>
+          class="flex justify-center items-center gap-6 text-4xl md:text-5xl font-bold my-12 min-h-[100px] flex-wrap select-none"
+          style="display: flex; justify-content: center; align-items: center; gap: 1.5rem; font-size: 3rem; font-weight: 700; margin-top: 3rem; margin-bottom: 3rem; min-height: 100px; flex-wrap: wrap; user-select: none;">
+          <span style="color: #1e293b;">x</span>
   
           <span id="target"
-            class="cursor-pointer transition-all duration-500 ease-out p-3 rounded-xl border-2 border-dashed shadow-sm hover:scale-105"
+            style="cursor: pointer; transition: all 0.5s ease-out; padding: 0.75rem; border-radius: 0.75rem; border: 2px dashed; display: inline-block;"
             onclick="moveElement()"></span>
   
-          <span class="text-slate-400">=</span>
-          <span id="right-side-display" class="text-slate-800"></span>
+          <span style="color: #94a3b8;">=</span>
+          <span id="right-side-display" style="color: #1e293b;"></span>
   
-          <span id="result-place" class="transition-all duration-500 ease-out p-3 rounded-xl"></span>
+          <span id="result-place"
+            style="transition: all 0.5s ease-out; padding: 0.75rem; border-radius: 0.75rem; display: inline-block;"></span>
         </div>
   
-        <div id="input-box" class="hidden opacity-0 transform translate-y-4 transition-all duration-500 ease-out mt-8">
+        <div id="input-box"
+          style="display: none; opacity: 0; transform: translateY(16px); transition: all 0.5s ease-out; margin-top: 2rem;">
           <div id="hint-text"
-            class="text-lg text-slate-600 bg-slate-50 px-5 py-3 rounded-xl inline-block mb-6 border border-slate-100 font-body-md">
+            style="font-size: 1.125rem; color: #475569; background-color: #f8fafc; padding: 0.75rem 1.25rem; border-radius: 0.75rem; display: inline-block; margin-bottom: 1.5rem; border: 1px solid #f1f5f9;">
           </div>
   
-          <div class="flex justify-center items-center gap-3">
-            <span class="text-2xl font-bold text-slate-700">x =</span>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem;">
+            <span style="font-size: 1.5rem; font-weight: 700; color: #334155;">x =</span>
             <input type="number" id="answer"
-              class="text-2xl p-3 w-32 text-center bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors"
+              style="font-size: 1.5rem; padding: 0.75rem; width: 8rem; text-align: center; background-color: #f8fafc; border: 2px solid #e2e8f0; border-radius: 0.75rem; outline: none; transition: border-color 0.2s;"
               placeholder="?">
             <button
-              class="bg-blue-600 hover:bg-blue-700 text-white font-medium text-lg px-6 py-3 rounded-xl transition-colors"
+              style="background-color: #2563eb; color: white; font-weight: 500; font-size: 1.125rem; padding: 0.75rem 1.5rem; border-radius: 0.75rem; border: none; cursor: pointer; transition: background-color 0.2s;"
+              onmouseover="this.style.backgroundColor='#1d4ed8'" onmouseout="this.style.backgroundColor='#2563eb'"
               onclick="checkAnswer()">Перевірити</button>
           </div>
   
-          <div id="feedback" class="mt-6 text-xl font-bold min-h-[30px]"></div>
+          <div id="feedback" style="margin-top: 1.5rem; font-size: 1.25rem; font-weight: 700; min-height: 30px;"></div>
           <button id="next-btn"
-            class="hidden mx-auto mt-6 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-lg px-8 py-3 rounded-xl transition-all"
+            style="display: none; margin-left: auto; margin-right: auto; margin-top: 1.5rem; background-color: #059669; color: white; font-weight: 500; font-size: 1.125rem; padding: 0.75rem 2rem; border-radius: 0.75rem; border: none; cursor: pointer; transition: background-color 0.2s;"
+            onmouseover="this.style.backgroundColor='#047857'" onmouseout="this.style.backgroundColor='#059669'"
             onclick="generateEquation()">Наступне рівняння ➡️</button>
         </div>
       </div>
@@ -250,14 +264,20 @@
 
       document.getElementById('answer').value = '';
       feedback.textContent = '';
-      nextBtn.classList.add('hidden');
-      inputBox.classList.add('hidden', 'opacity-0', 'translate-y-4');
+      nextBtn.style.display = 'none';
+
+      // Ховаємо блок введення
+      inputBox.style.display = 'none';
+      inputBox.style.opacity = '0';
+      inputBox.style.transform = 'translateY(16px)';
 
       resultPlace.textContent = '';
-      resultPlace.className = 'transition-all duration-500 ease-out p-3 rounded-xl';
+      resultPlace.style.border = 'none';
+      resultPlace.style.background = 'transparent';
 
       target.style.display = 'inline-block';
-      target.className = 'cursor-pointer transition-all duration-500 ease-out p-3 rounded-xl border-2 border-dashed shadow-sm hover:scale-105';
+      target.style.opacity = '1';
+      target.style.transform = 'scale(1)';
 
       currentSign = Math.random() > 0.5 ? '+' : '-';
 
@@ -268,11 +288,15 @@
       if (currentSign === '+') {
         currentRightSide = currentX + currentB;
         target.textContent = `+ ${currentB}`;
-        target.className += ' border-rose-400 bg-rose-50/50 text-rose-600';
+        target.style.borderColor = '#f43f5e';
+        target.style.backgroundColor = '#fff1f2';
+        target.style.color = '#e11d48';
       } else {
         currentRightSide = currentX - currentB;
         target.textContent = `- ${currentB}`;
-        target.className += ' border-blue-400 bg-blue-50/50 text-blue-600';
+        target.style.borderColor = '#3b82f6';
+        target.style.backgroundColor = '#eff6ff';
+        target.style.color = '#2563eb';
       }
 
       document.getElementById('right-side-display').textContent = currentRightSide;
@@ -284,26 +308,32 @@
       const inputBox = document.getElementById('input-box');
       const hintText = document.getElementById('hint-text');
 
-      if (target.classList.contains('opacity-0')) return;
+      if (target.style.opacity === '0') return;
 
-      target.classList.add('opacity-0', 'scale-75');
+      target.style.opacity = '0';
+      target.style.transform = 'scale(0.75)';
 
       setTimeout(() => {
         target.style.display = 'none';
 
         if (currentSign === '+') {
           resultPlace.textContent = `- ${currentB}`;
-          resultPlace.className += ' border-2 border-rose-500 bg-rose-50 text-rose-600';
+          resultPlace.style.border = '2px solid #f43f5e';
+          resultPlace.style.backgroundColor = '#fff1f2';
+          resultPlace.style.color = '#e11d48';
           hintText.innerHTML = `Плюс змінився на мінус! Рахуємо: <b>x = ${currentRightSide} - ${currentB}</b>`;
         } else {
           resultPlace.textContent = `+ ${currentB}`;
-          resultPlace.className += ' border-2 border-emerald-500 bg-emerald-50 text-emerald-600';
+          resultPlace.style.border = '2px solid #10b981';
+          resultPlace.style.backgroundColor = '#ecfdf5';
+          resultPlace.style.color = '#059669';
           hintText.innerHTML = `Мінус змінився на плюс! Рахуємо: <b>x = ${currentRightSide} + ${currentB}</b>`;
         }
 
-        inputBox.classList.remove('hidden');
+        inputBox.style.display = 'block';
         setTimeout(() => {
-          inputBox.classList.remove('opacity-0', 'translate-y-4');
+          inputBox.style.opacity = '1';
+          inputBox.style.transform = 'translateY(0)';
         }, 50);
 
         document.getElementById('answer').focus();
@@ -316,11 +346,11 @@
       const nextBtn = document.getElementById('next-btn');
 
       if (parseInt(userAnswer) === currentX) {
-        feedback.className = "mt-6 text-xl font-bold min-h-[30px] text-emerald-600";
+        feedback.style.color = '#059669';
         feedback.textContent = '🎉 Абсолютно правильно! Чудова робота зі знаками!';
-        nextBtn.classList.remove('hidden');
+        nextBtn.style.display = 'block';
       } else {
-        feedback.className = "mt-6 text-xl font-bold min-h-[30px] text-rose-500";
+        feedback.style.color = '#ef4444';
         feedback.textContent = '❌ Не зовсім так. Будь уважна при обчисленні!';
       }
     }
